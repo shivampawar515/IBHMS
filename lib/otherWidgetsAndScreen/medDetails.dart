@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medkit/animations/bottomAnimation.dart';
 import 'package:medkit/otherWidgetsAndScreen/doctorAbout.dart';
-import 'package:medkit/otherWidgetsAndScreen/medDetails.dart';
+import 'package:medkit/patient/Dashboard.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:location/location.dart';
 import 'backBtnAndImage.dart';
@@ -14,6 +14,7 @@ import 'package:medkit/doctor/addDisease.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:medkit/patient/patientLogin.dart';
 
 final controllerUpdatedDesc = TextEditingController();
 final controllerUpdatedMed = TextEditingController();
@@ -36,7 +37,7 @@ class MapUtils {
 class MedDetails extends StatefulWidget {
   final DocumentSnapshot snapshot;
   final String doctorName;
-
+  // String final_result;
   MedDetails({@required this.snapshot, this.doctorName});
 
   @override
@@ -46,6 +47,10 @@ class MedDetails extends StatefulWidget {
 class _MedDetailsState extends State<MedDetails> {
   var location = new Location();
   var currentLocation = LocationData;
+  String data_var = PatientLogin.PatientNameVar;
+
+  // String final_result_med = _DashboardState.final_result;
+
   final databaseReference = FirebaseDatabase.instance.reference();
   double temp, humidity, spO2, bodyTemp, bPM;
   bool validDesc = false;
@@ -86,7 +91,7 @@ class _MedDetailsState extends State<MedDetails> {
 
     databaseReference
         .child('Try2')
-        .child("Manish")
+        .child('Manish')
         .once()
         .then((DataSnapshot snapshot) {
       setState(() {
@@ -95,13 +100,13 @@ class _MedDetailsState extends State<MedDetails> {
         spO2 = snapshot.value['spO2'];
         bPM = snapshot.value['bPM'];
         bodyTemp = snapshot.value['bodyTemp'];
-        print("22222222222222222222222");
-        print(temp);
-        print(humidity);
-        print(spO2);
-        print(bPM);
-        print(bodyTemp);
-        print(snapshot.value['temp']);
+        // print("22222222222222222222222");
+        // print(temp);
+        // print(humidity);
+        // print(spO2);
+        // print(bPM);
+        // print(bodyTemp);
+        // print(snapshot.value['temp']);
       });
     });
 
@@ -395,6 +400,14 @@ class _MedDetailsState extends State<MedDetails> {
                               ),
                             ],
                           ),
+                          // Row(
+                          //   children: <Widget>[
+                          //     Text(
+                          //       final_result_med,
+                          //       style: TextStyle(fontSize: height * 0.03),
+                          //     ),
+                          //   ],
+                          // ),
                           updatedDesc,
                           SizedBox(
                             height: height * 0.02,

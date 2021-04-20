@@ -140,104 +140,114 @@ class _DoctorLoginState extends State<DoctorLogin> {
         }
       },
       child: Scaffold(
-          backgroundColor: Colors.lightBlueAccent,
-          //resizeToAvoidBottomPadding: false,
           resizeToAvoidBottomInset: false,
-          body: SafeArea(
-            child: Container(
-              width: width,
-              height: height,
-              child: Stack(
-                children: <Widget>[
-                  BackBtn(),
-                  ImageAvatar(
-                    assetImage: 'assets/bigDoc.png',
-                  ),
-                  Container(
-                    width: width,
-                    height: height,
-                    margin:
-                        EdgeInsets.fromLTRB(width * 0.03, 0, width * 0.03, 0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        SizedBox(
-                          height: height * 0.05,
-                        ),
-                        Text(
-                          "\t\tLogin",
-                          style: GoogleFonts.abel(
-                              fontSize: height * 0.044,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: height * 0.05,
-                        ),
-                        nameTextField,
-                        //phoneTextField,
-                        cnicTextField,
-                        SizedBox(
-                          height: height * 0.01,
-                        ),
-                        SizedBox(
-                          width: width,
-                          height: height * 0.07,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.white,
-                              onPrimary: Colors.white,
-                              shape: StadiumBorder(),
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                _controllerCNIC.text.isEmpty
-                                    ? validateCNICVar = true
-                                    : validateCNICVar = false;
-                                _controllerName.text.isEmpty
-                                    ? validateName = true
-                                    : validateName = false;
-                              });
-                              !validateName & !validateCNICVar
-                                  ? getInfoAndLogin()
-                                  : Toast.show("Empty Field(s) Found!", context,
-                                      backgroundColor: Colors.red,
-                                      backgroundRadius: 5,
-                                      duration: Toast.LENGTH_LONG);
-                            },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                WidgetAnimator(
-                                  Image(
-                                    image: AssetImage('assets/google.png'),
-                                    height: height * 0.035,
+          body: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Colors.lightBlue[300], Colors.blue]),
+            ),
+            // backgroundColor: Colors.lightBlueAccent,
+            //resizeToAvoidBottomPadding: false,
+
+            child: SafeArea(
+              child: Container(
+                width: width,
+                height: height,
+                child: Stack(
+                  children: <Widget>[
+                    BackBtn(),
+                    ImageAvatar(
+                      assetImage: 'assets/bigDoc.png',
+                    ),
+                    Container(
+                      width: width,
+                      height: height,
+                      margin:
+                          EdgeInsets.fromLTRB(width * 0.03, 0, width * 0.03, 0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          SizedBox(
+                            height: height * 0.05,
+                          ),
+                          Text(
+                            "\t\tLogin",
+                            style: GoogleFonts.abel(
+                                fontSize: height * 0.044,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            height: height * 0.05,
+                          ),
+                          nameTextField,
+                          //phoneTextField,
+                          cnicTextField,
+                          SizedBox(
+                            height: height * 0.01,
+                          ),
+                          SizedBox(
+                            width: width,
+                            height: height * 0.07,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.white,
+                                onPrimary: Colors.white,
+                                shape: StadiumBorder(),
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _controllerCNIC.text.isEmpty
+                                      ? validateCNICVar = true
+                                      : validateCNICVar = false;
+                                  _controllerName.text.isEmpty
+                                      ? validateName = true
+                                      : validateName = false;
+                                });
+                                !validateName & !validateCNICVar
+                                    ? getInfoAndLogin()
+                                    : Toast.show(
+                                        "Empty Field(s) Found!", context,
+                                        backgroundColor: Colors.red,
+                                        backgroundRadius: 5,
+                                        duration: Toast.LENGTH_LONG);
+                              },
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  WidgetAnimator(
+                                    Image(
+                                      image: AssetImage('assets/google.png'),
+                                      height: height * 0.035,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(width: height * 0.015),
-                                Text(
-                                  'Login',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      letterSpacing: 2,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: height * 0.022),
-                                )
-                              ],
+                                  SizedBox(width: height * 0.015),
+                                  Text(
+                                    'Login',
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        letterSpacing: 2,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: height * 0.022),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          height: height * 0.02,
-                        ),
+                          SizedBox(
+                            height: height * 0.02,
+                          ),
 
-                        SizedBox(
-                          height: height * 0.2,
-                        )
-                      ],
+                          SizedBox(
+                            height: height * 0.2,
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           )),

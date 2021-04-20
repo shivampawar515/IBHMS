@@ -7,6 +7,7 @@ import 'package:medkit/doctor/doctorLogin.dart';
 import 'package:medkit/otherWidgetsAndScreen/backBtnAndImage.dart';
 import 'package:medkit/patient/patientPanel.dart';
 import 'package:medkit/patient/Dashboard.dart';
+import 'package:flutter_gradient_colors/flutter_gradient_colors.dart';
 
 import 'package:toast/toast.dart';
 
@@ -15,6 +16,7 @@ final _controllerPatientName = TextEditingController();
 class PatientLogin extends StatelessWidget {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = new GoogleSignIn();
+
   bool validatePatientName = false;
   static String PatientNameVar;
   Future<FirebaseUser> _signIn(BuildContext context) async {
@@ -79,97 +81,105 @@ class PatientLogin extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: Colors.lightBlueAccent,
-      body: SafeArea(
-        child: Stack(
-          children: <Widget>[
-            BackBtn(),
-            ImageAvatar(
-              assetImage: 'assets/patient.png',
-            ),
-            Container(
-              width: width,
-              height: height,
-              margin: EdgeInsets.fromLTRB(
-                  width * 0.04, height * 0.1, width * 0.04, 0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    "Login",
-                    style: GoogleFonts.abel(
-                        fontSize: height * 0.045, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: height * 0.05,
-                  ),
-                  // Text(
-                  //   'Features',
-                  //   style: TextStyle(
-                  //       color: Colors.black.withOpacity(0.5),
-                  //       fontWeight: FontWeight.bold),
-                  // ),
-                  // Text(
-                  //   '1. Details about different Diseases'
-                  //   '\n2. Details about different Medicine'
-                  //   '\n3. Check Dr Specification'
-                  //   '\n4. Search for Nearest Pharmacy',
-                  //   style: TextStyle(
-                  //       color: Colors.black.withOpacity(0.5),
-                  //       height: height * 0.002),
-                  // ),
-                  PatientNameTextField,
-                  SizedBox(
-                    height: height * 0.02,
-                  ),
-                  SizedBox(
-                    width: width,
-                    height: height * 0.07,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        onPrimary: Colors.white,
-                        shape: StadiumBorder(),
-                      ),
-                      onPressed: () {
-                        _controllerPatientName.text.isEmpty
-                            ? validatePatientName = true
-                            : validatePatientName = false;
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [Colors.lightBlue[300], Colors.blue]),
+        ),
+        child: SafeArea(
+          child: Stack(
+            children: <Widget>[
+              BackBtn(),
+              ImageAvatar(
+                assetImage: 'assets/patient.png',
+              ),
+              Container(
+                width: width,
+                height: height,
+                margin: EdgeInsets.fromLTRB(
+                    width * 0.04, height * 0.1, width * 0.04, 0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      "Login",
+                      style: GoogleFonts.abel(
+                          fontSize: height * 0.045,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: height * 0.05,
+                    ),
+                    // Text(
+                    //   'Features',
+                    //   style: TextStyle(
+                    //       color: Colors.black.withOpacity(0.5),
+                    //       fontWeight: FontWeight.bold),
+                    // ),
+                    // Text(
+                    //   '1. Details about different Diseases'
+                    //   '\n2. Details about different Medicine'
+                    //   '\n3. Check Dr Specification'
+                    //   '\n4. Search for Nearest Pharmacy',
+                    //   style: TextStyle(
+                    //       color: Colors.black.withOpacity(0.5),
+                    //       height: height * 0.002),
+                    // ),
+                    PatientNameTextField,
+                    SizedBox(
+                      height: height * 0.02,
+                    ),
+                    SizedBox(
+                      width: width,
+                      height: height * 0.07,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                          onPrimary: Colors.white,
+                          shape: StadiumBorder(),
+                        ),
+                        onPressed: () {
+                          _controllerPatientName.text.isEmpty
+                              ? validatePatientName = true
+                              : validatePatientName = false;
 
-                        !validatePatientName
-                            ? getNamePatient()
-                            : Toast.show("Empty Field Found!", context,
-                                backgroundColor: Colors.red,
-                                backgroundRadius: 5,
-                                duration: Toast.LENGTH_LONG);
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          WidgetAnimator(
-                            Image(
-                              image: AssetImage('assets/google.png'),
-                              height: height * 0.038,
+                          !validatePatientName
+                              ? getNamePatient()
+                              : Toast.show("Empty Field Found!", context,
+                                  backgroundColor: Colors.red,
+                                  backgroundRadius: 5,
+                                  duration: Toast.LENGTH_LONG);
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            WidgetAnimator(
+                              Image(
+                                image: AssetImage('assets/google.png'),
+                                height: height * 0.038,
+                              ),
                             ),
-                          ),
-                          SizedBox(width: width * 0.02),
-                          Text(
-                            'Login Using Gmail',
-                            style: TextStyle(
-                                color: Colors.black,
-                                letterSpacing: 1.5,
-                                fontWeight: FontWeight.w600,
-                                fontSize: height * 0.021),
-                          )
-                        ],
+                            SizedBox(width: width * 0.02),
+                            Text(
+                              'Login Using Gmail',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  letterSpacing: 1.5,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: height * 0.021),
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

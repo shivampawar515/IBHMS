@@ -6,6 +6,8 @@ import 'package:medkit/otherWidgetsAndScreen/aboutUs.dart';
 import 'package:medkit/otherWidgetsAndScreen/category.dart';
 import 'package:medkit/patient/patientLogin.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:flutter_gradient_colors/flutter_gradient_colors.dart';
+//import 'package:flutter_gradients/flutter_gradients.dart';
 
 import 'animations/fadeAnimation.dart';
 
@@ -111,18 +113,24 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     final double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: Colors.cyan,
+      // backgroundColor: Colors.cyan,
       body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: GradientColors.skyBlue),
+        ),
         width: width,
         child: Stack(
           children: <Widget>[
             Positioned(
-              top: height * 0.05,
+              top: height * 0.01,
               left: width - 240,
               child: FadeAnimation(
                 1,
                 Container(
-                  width: width,
+                  width: width - 30,
                   child: Image(image: AssetImage('assets/hospital.png')),
                 ),
               ),

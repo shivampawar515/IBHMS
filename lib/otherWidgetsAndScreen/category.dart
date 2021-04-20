@@ -1,8 +1,10 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:medkit/animations/fadeAnimation.dart';
 import 'package:medkit/animations/bottomAnimation.dart';
+import 'package:flutter_gradient_colors/flutter_gradient_colors.dart';
 
 class Category extends StatelessWidget {
   @override
@@ -54,7 +56,13 @@ class Category extends StatelessWidget {
     return WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
-        body: SafeArea(
+        body: Container(
+          decoration: new BoxDecoration(
+              gradient: new LinearGradient(
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
+            colors: GradientColors.skyBlue,
+          )),
           child: Column(
             children: <Widget>[
               SizedBox(
@@ -80,35 +88,44 @@ class Category extends StatelessWidget {
                         child: Icon(
                           Icons.info,
                           size: height * 0.04,
-                          color: Colors.green,
+                          color: Colors.black,
                         ),
                       )
                     ],
                   ),
                 ),
               ),
+              SizedBox(
+                height: height * 0.040,
+              ),
               SizedBox(height: height * 0.09),
               Column(
                 children: <Widget>[
                   CircleAvatar(
-                    backgroundColor: Colors.black.withOpacity(0.2),
+                    backgroundColor: Colors.black.withOpacity(0.4),
                     radius: height * 0.075,
                     child: Image(
                       image: AssetImage("assets/doctor.png"),
                       height: height * 0.2,
                     ),
                   ),
+                  SizedBox(
+                    height: height * 0.02,
+                  ),
                   WidgetAnimator(patDocBtn('Doctor', context)),
                   SizedBox(
                     height: height * 0.1,
                   ),
                   CircleAvatar(
-                    backgroundColor: Colors.black.withOpacity(0.2),
+                    backgroundColor: Colors.black.withOpacity(0.4),
                     radius: height * 0.075,
                     child: Image(
                       image: AssetImage("assets/patient.png"),
                       height: height * 0.2,
                     ),
+                  ),
+                  SizedBox(
+                    height: height * 0.02,
                   ),
                   WidgetAnimator(patDocBtn('Patient', context)),
                   SizedBox(
